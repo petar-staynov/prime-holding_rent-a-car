@@ -12,6 +12,10 @@ import VehicleAdd from "./components/pages/vehicles/VehicleAdd";
 import VehicleEdit from "./components/pages/vehicles/VehicleEdit";
 import VehicleDelete from "./components/pages/vehicles/VehicleDelete";
 import VehicleView from "./components/pages/vehicles/VehicleView";
+import CustomerAdd from "./components/pages/customers/CustomerAdd";
+import CustomerView from "./components/pages/customers/CustomerView";
+import CustomerEdit from "./components/pages/customers/CustomerEdit";
+import CustomerDelete from "./components/pages/customers/CustomerDelete";
 
 function App() {
     return (
@@ -28,6 +32,11 @@ function App() {
                 <Route exact path='/vehicles/delete/:id' component={VehicleDelete}/>
                 <Route exact path='/vehicles/view/:id' component={VehicleView}/>
                 <Route exact path='/customers' component={CustomersPage}/>
+                <Route exact path='/customers/add' component={CustomerAdd}/>
+                <Route exact path='/customers/view/:id' component={CustomerView}/>
+                <Route exact path='/customers/edit/:id' component={CustomerEdit}/>
+                <Route exact path='/customers/delete/:id' component={CustomerDelete}/>
+
                 <Route exact path='/rent' component={RentPage}/>
 
             </Switch>
