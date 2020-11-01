@@ -35,7 +35,7 @@ const VehicleView = (props) => {
     };
 
     if (vehicleData) {
-        const {id, brand, model, year, type, fuelType, price, seatsNumber, picture, count} = vehicleData;
+        const {id, brand, model, year, type, fuelType, price, seats, picture, count} = vehicleData;
         return (
             <div className="text-center">
                 <div className="row">
@@ -88,7 +88,7 @@ const VehicleView = (props) => {
                         <h2>Seats:</h2>
                     </div>
                     <div className="col-6 text-left">
-                        <h2>{seatsNumber}</h2>
+                        <h2>{seats}</h2>
                     </div>
                 </div>
 

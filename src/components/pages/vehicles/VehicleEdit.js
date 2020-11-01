@@ -195,7 +195,7 @@ const VehicleEdit = (props) => {
                         max={7}
                         required
                         value={seats}
-                        onChange={(e) => setVehicleData({...vehicleData, count: Number(e.target.value)})}/>
+                        onChange={(e) => setVehicleData({...vehicleData, seats: Number(e.target.value)})}/>
                     <br/>
 
                     <Form.Label>Rent price</Form.Label>
