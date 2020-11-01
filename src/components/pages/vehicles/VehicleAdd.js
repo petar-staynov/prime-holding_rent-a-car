@@ -14,12 +14,10 @@ const VehicleAdd = (props) => {
     const [year, setYear] = useState("");
     const [type, setType] = useState("economy");
     const [fuelType, setFuelType] = useState("petrol");
-    const [seats, setSeats] = useState(null);
-    const [price, setPrice] = useState(null);
-    const [count, setCount] = useState(null);
+    const [seats, setSeats] = useState("0");
+    const [price, setPrice] = useState("0");
+    const [count, setCount] = useState("0");
     const [file, setFile] = useState(null);
-
-    const [imgUrl, setImgUrl] = useState(null);
 
     // Refs
     const history = useHistory();
@@ -36,7 +34,38 @@ const VehicleAdd = (props) => {
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
+        const submitDocument = (imgUrl) => {
+            console.log(imgUrl);
+
+            if (!imgUrl) {
+                alert("Invalid image");
+                return;
+            }
+
+            // Store entity in Firebase
+            const vehicle = new VehicleModel(
+                brand,
+                model,
+                new Date(year),
+                type,
+                fuelType,
+                seats,
+                price,
+                count,
+                imgUrl,
+            );
+
+            vehiclesRef
+                .add(Object.assign({}, vehicle))
+                .then((docRef) => {
+                    history.push('/vehicles');
+                }).catch((err) => {
+                alert(err);
+                console.log(err)
+            })
+        };
+
         e.preventDefault();
 
         // Form data validation
@@ -50,43 +79,15 @@ const VehicleAdd = (props) => {
         if (!count) alert("Please enter a valid amount of available vehicles");
 
         //Image upload
-        projectStorage.ref(file.name).put(file)
+        await projectStorage.ref(file.name).put(file)
             .on('state_changed', (snapshot) => {
-                console.log(snapshot)
+                // console.log(snapshot)
             }, (err) => {
                 alert("ERROR");
                 console.log(err);
-            }, () => {
-                projectStorage.ref().child(file.name).getDownloadURL()
-                    .then((url) => {
-                        setImgUrl(url);
-                    })
-            })
-
-        debugger;
-
-        // Store entity in Firebase
-        const vehicle = new VehicleModel(
-            brand,
-            model,
-            new Date(year),
-            type,
-            fuelType,
-            seats,
-            price,
-            count,
-            imgUrl,
-        );
-
-        console.log(vehicle);
-
-        vehiclesRef
-            .add(Object.assign({}, vehicle))
-            .then((docRef) => {
-                history.push('/vehicles');
-            }).catch((err) => {
-                alert(err);
-                console.log(err)
+            }, async () => {
+                const imgUrl = await projectStorage.ref().child(file.name).getDownloadURL();
+                submitDocument(imgUrl);
             })
     };
 
