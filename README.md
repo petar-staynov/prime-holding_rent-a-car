@@ -1,5 +1,6 @@
 # Rent a car
-This is a simple web app built using React (Hooks), React Router, Bootstrap, Firebase Firestore (DB) and Firebase Storage (Image storage)
+This is a simple web app built using React (Hooks), React Router, Bootstrap, Firebase Firestore (DB) and Firebase Storage (Image storage)  
+Live demo here: [https://petar-staynov.github.io/prime-holding_rent-a-car](https://petar-staynov.github.io/prime-holding_rent-a-car)
 
 ##
 
