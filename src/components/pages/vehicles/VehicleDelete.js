@@ -64,31 +64,27 @@ const VehicleDelete = (props) => {
                         type="text"
                         name="brand"
                         placeholder="Brand..."
-                        required
                         disabled
                         value={brand}
-                        onChange={(e) => setVehicleData({...vehicleData, brand: e.target.value})}/>
+                    />
                     <br/>
 
                     <Form.Label>Model</Form.Label>
                     <Form.Control
                         type="text"
                         placeholder="Model..."
-                        required
                         disabled
                         value={model}
-                        onChange={(e) => setVehicleData({...vehicleData, model: e.target.value})}/>
+                    />
                     <br/>
 
                     <Form.Label>Year</Form.Label>
                     <Form.Control
                         type="date"
                         placeholder="Construction year..."
-                        min="1980-01-01"
-                        required
                         disabled
                         value={FirebaseTimestampToHtmlDate(year)}
-                        onChange={(e) => setVehicleData({...vehicleData, year: e.target.value})}/>
+                    />
                     <br/>
 
                     <Form.Label>Type</Form.Label>
@@ -96,13 +92,8 @@ const VehicleDelete = (props) => {
                         as="select"
                         required
                         disabled
-                        value={type}
-                        onChange={(e) => setVehicleData({...vehicleData, type: e.target.value})}>
-                        {
-                            Object.entries(VehicleTypes).map(([key, value]) => {
-                                return (<option key={key} value={key}>{value}</option>)
-                            })
-                        }
+                        value={type}>
+                        <option key={type} value={VehicleTypes[type]}>{VehicleTypes[type]}</option>
                     </Form.Control>
                     <br/>
 
@@ -111,13 +102,8 @@ const VehicleDelete = (props) => {
                         as="select"
                         required
                         disabled
-                        value={fuelType}
-                        onChange={(e) => setVehicleData({...vehicleData, fuelType: e.target.value})}>
-                        {
-                            Object.entries(VehicleFuelTypes).map(([key, value]) => {
-                                return (<option key={key} value={key}>{value}</option>)
-                            })
-                        }
+                        value={fuelType}>
+                        <option key={fuelType} value={VehicleFuelTypes[fuelType]}>{VehicleFuelTypes[fuelType]}</option>
                     </Form.Control>
                     <br/>
 
@@ -125,37 +111,30 @@ const VehicleDelete = (props) => {
                     <Form.Control
                         type="number"
                         placeholder="Number of seats..."
-                        min={1}
-                        max={7}
-                        required
                         disabled
                         value={seats}
-                        onChange={(e) => setVehicleData({...vehicleData, count: Number(e.target.value)})}/>
+                    />
                     <br/>
 
                     <Form.Label>Rent price</Form.Label>
                     <Form.Control
                         type="number"
                         placeholder="Rent price..."
-                        min={1}
-                        required
                         disabled
                         value={price}
-                        onChange={(e) => setVehicleData({...vehicleData, price: e.target.value})}/>
+                    />
                     <br/>
 
                     <Form.Label>Available vehicles</Form.Label>
                     <Form.Control
                         type="number"
                         placeholder="Available vehicles..."
-                        min={1}
-                        required
                         disabled
                         value={count}
-                        onChange={(e) => setVehicleData({...vehicleData, count: e.target.value})}/>
+                    />
                     <br/>
 
-                    <Button variant="danger" type="submit">Delete</Button>
+                    <Button variant="danger" size="lg" type="submit">Delete</Button>
                 </Form>
                 <hr/>
                 <div className="row">
