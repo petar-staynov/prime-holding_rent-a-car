@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/prime-holding_rent-a-car/static/css/main.ba246bcc.chunk.css",
-    "main.js": "/prime-holding_rent-a-car/static/js/main.ec31d290.chunk.js",
-    "main.js.map": "/prime-holding_rent-a-car/static/js/main.ec31d290.chunk.js.map",
+    "main.js": "/prime-holding_rent-a-car/static/js/main.56c034b0.chunk.js",
+    "main.js.map": "/prime-holding_rent-a-car/static/js/main.56c034b0.chunk.js.map",
     "runtime-main.js": "/prime-holding_rent-a-car/static/js/runtime-main.1ce5ea9a.js",
     "runtime-main.js.map": "/prime-holding_rent-a-car/static/js/runtime-main.1ce5ea9a.js.map",
-    "static/js/2.52147c43.chunk.js": "/prime-holding_rent-a-car/static/js/2.52147c43.chunk.js",
-    "static/js/2.52147c43.chunk.js.map": "/prime-holding_rent-a-car/static/js/2.52147c43.chunk.js.map",
+    "static/js/2.0e708b4d.chunk.js": "/prime-holding_rent-a-car/static/js/2.0e708b4d.chunk.js",
+    "static/js/2.0e708b4d.chunk.js.map": "/prime-holding_rent-a-car/static/js/2.0e708b4d.chunk.js.map",
     "index.html": "/prime-holding_rent-a-car/index.html",
     "static/css/main.ba246bcc.chunk.css.map": "/prime-holding_rent-a-car/static/css/main.ba246bcc.chunk.css.map",
-    "static/js/2.52147c43.chunk.js.LICENSE.txt": "/prime-holding_rent-a-car/static/js/2.52147c43.chunk.js.LICENSE.txt"
+    "static/js/2.0e708b4d.chunk.js.LICENSE.txt": "/prime-holding_rent-a-car/static/js/2.0e708b4d.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.1ce5ea9a.js",
-    "static/js/2.52147c43.chunk.js",
+    "static/js/2.0e708b4d.chunk.js",
     "static/css/main.ba246bcc.chunk.css",
-    "static/js/main.ec31d290.chunk.js"
+    "static/js/main.56c034b0.chunk.js"
   ]
 }
