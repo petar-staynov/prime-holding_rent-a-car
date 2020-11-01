@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {useHistory} from "react-router-dom";
-import {projectFirestore} from "../../../firebase/config";
+import {projectFirestore, projectStorage} from "../../../firebase/config";
 import {useCollectionData} from "react-firebase-hooks/firestore";
 import ImageDisplay from "../../shared/ImageDisplay";
 import {FirebaseTimestampToYear} from "../../../utils/DateUtils";
 import VehicleFuelTypes from "../../../types/VehicleFuelTypes";
+import VehicleModel from "../../../models/VehicleModel";
 
 const VehicleView = (props) => {
     const {match} = props;
