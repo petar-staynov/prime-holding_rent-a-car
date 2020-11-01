@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {useHistory} from "react-router-dom";
 import {projectFirestore} from "../../../firebase/config";
 import {useCollectionData} from "react-firebase-hooks/firestore";
 import ImageDisplay from "../../shared/ImageDisplay";
@@ -12,6 +13,7 @@ const VehicleView = (props) => {
     const [vehicleData, setVehicleData] = useState(null);
 
     // Refs
+    const history = useHistory();
     const vehiclesRef = projectFirestore.collection('vehicles');
 
     useEffect(() => {
@@ -19,19 +21,25 @@ const VehicleView = (props) => {
             .doc(vehicleId)
             .get()
             .then(res => {
-                console.log(res.data());
                 setVehicleData(res.data());
             });
     }, []);
 
+    const handleBtnEdit = () => {
+        history.push(`/vehicles/edit/${vehicleId}`);
+    };
+
+    const handleBtnDelete = () => {
+        history.push(`/vehicles/delete/${vehicleId}`);
+    };
 
     if (vehicleData) {
-        const {brand, model, year, type, fuelType, price, seatsNumber, picture, count} = vehicleData;
+        const {id, brand, model, year, type, fuelType, price, seatsNumber, picture, count} = vehicleData;
         return (
             <div className="text-center">
                 <div className="row">
                     <div className="col-12">
-                        <ImageDisplay picture={picture} width="30%"/>
+                        <ImageDisplay picture={picture} css={{maxHeight: "24rem"}}/>
                     </div>
                 </div>
                 <div className="row">
@@ -88,7 +96,7 @@ const VehicleView = (props) => {
                         <h2>Rent price:</h2>
                     </div>
                     <div className="col-6 text-left">
-                        <h2>{price}</h2>
+                        <h2>${price} / day</h2>
                     </div>
                 </div>
                 <div className="row">
@@ -97,6 +105,13 @@ const VehicleView = (props) => {
                     </div>
                     <div className="col-6 text-left">
                         <h2>{count}</h2>
+                    </div>
+                </div>
+                <hr/>
+                <div className="row">
+                    <div className="col-12">
+                        <button type="button" className="btn btn-warning mr-1" onClick={handleBtnEdit}>Edit</button>
+                        <button type="button" className="btn btn-danger mr-1" onClick={handleBtnDelete}>Delete</button>
                     </div>
                 </div>
             </div>
