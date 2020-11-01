@@ -6,6 +6,7 @@ import VehicleModel from "../../../models/VehicleModel";
 import CustomerModel from "../../../models/CustomerModel";
 import {useHistory} from "react-router-dom";
 import {projectFirestore} from "../../../firebase/config";
+import {EmailPattern, PhoneNumberPattern} from "../../../regex/RegexPatterns";
 
 const CustomerAdd = (props) => {
     // Form data states
@@ -20,17 +21,21 @@ const CustomerAdd = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        // Form data validation
+        const emailRegex = new RegExp(EmailPattern);
+        const phoneRegex = new RegExp(PhoneNumberPattern);
+
         if (!name) {
-            alert("Please type a brand");
+            alert("Please type a valid name");
             return;
         }
-        if (!email) {
-            alert("Please type a model");
+        if (!email || !emailRegex.test(email)) {
+            alert("Please type a valid email");
             return;
         }
-        if (!phone) {
-            alert("Please enter a valid year");
-            return;
+        if (!phone || !phoneRegex.test(phone)) {
+            alert("Please type a valid phone number of at least 10 digits");
+            return
         }
 
         const customer = new CustomerModel(
@@ -78,8 +83,8 @@ const CustomerAdd = (props) => {
                 <Form.Control
                     type="tel"
                     placeholder="Phone number..."
-                    minlength={10}
-                    maxlength={20}
+                    minLength={10}
+                    maxLength={20}
                     required
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}

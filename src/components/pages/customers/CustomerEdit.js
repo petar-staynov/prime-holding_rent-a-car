@@ -3,6 +3,7 @@ import {useHistory} from "react-router-dom";
 import {projectFirestore, projectStorage} from "../../../firebase/config";
 import CustomerModel from "../../../models/CustomerModel";
 import {Button, Form} from "react-bootstrap";
+import {EmailPattern, PhoneNumberPattern} from "../../../regex/RegexPatterns";
 
 const CustomerEdit = (props) => {
     const {match} = props;
@@ -42,9 +43,21 @@ const CustomerEdit = (props) => {
         } = customerData;
 
         // Form data validation
-        if (!customerData.name) alert("Please type a valid name");
-        if (!customerData.email) alert("Please type a valid email");
-        if (!customerData.phone) alert("Please type a valid phone number");
+        const emailRegex = new RegExp(EmailPattern);
+        const phoneRegex = new RegExp(PhoneNumberPattern);
+
+        if (!name) {
+            alert("Please type a valid name");
+            return;
+        }
+        if (!email || !emailRegex.test(email)) {
+            alert("Please type a valid email");
+            return;
+        }
+        if (!phone || !phoneRegex.test(phone)) {
+            alert("Please type a valid phone number of at least 10 digits");
+            return
+        }
 
         // Store entity in Firebase
         const customer = new CustomerModel(name, email, phone);
@@ -92,17 +105,17 @@ const CustomerEdit = (props) => {
 
                     <Form.Label>Phone</Form.Label>
                     <Form.Control
-                        type="tel"
+                        type="string"
                         placeholder="Phone number..."
-                        minlength={10}
-                        maxlength={20}
+                        minLength={10}
+                        maxLength={20}
                         required
                         value={phone}
                         onChange={(e) => setCustomerData({...customerData, phone: e.target.value})}
                     />
                     <hr/>
 
-                    <Button variant="primary" type="submit">Submit</Button>
+                    <Button variant="success" type="submit">Submit</Button>
                 </Form>
                 <hr/>
                 <div className="row">
