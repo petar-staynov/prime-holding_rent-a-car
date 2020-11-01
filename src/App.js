@@ -1,6 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
-import {Counter} from './features/counter/Counter';
 import './App.css';
 import Navigationbar from "./components/navbar/Navigationbar";
 import HomePage from "./components/pages/HomePage";
