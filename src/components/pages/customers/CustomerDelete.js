@@ -3,6 +3,7 @@ import {useHistory} from "react-router-dom";
 import {projectFirestore, projectStorage} from "../../../firebase/config";
 import CustomerModel from "../../../models/CustomerModel";
 import {Button, Form} from "react-bootstrap";
+import {EmailPattern} from "../../../regex/RegexPatterns";
 
 const CustomerDelete = (props) => {
     const {match} = props;
@@ -71,6 +72,7 @@ const CustomerDelete = (props) => {
                         placeholder="Email..."
                         disabled
                         value={email}
+                        pattern={EmailPattern}
                     />
                     <br/>
 
