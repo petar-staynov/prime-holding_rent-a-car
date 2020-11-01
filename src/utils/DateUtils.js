@@ -14,3 +14,23 @@ export const FirebaseTimestampToHtmlDate = (timestamp) => {
 export const JsDateToHtmlDate = (date) => {
     return date.toISOString().substring(0, 10);
 }
+
+export const CalculateStringDatesDayDifference = (startDate, endDate) => {
+    const startDateObj = new Date(startDate);
+    const endDateObj = new Date(endDate);
+
+    const datesTimeDifference = endDateObj.getTime() - startDateObj.getTime();
+    const datesDaysDifference = Math.ceil(datesTimeDifference / (1000 * 3600 * 24));
+
+    return datesDaysDifference;
+}
+
+export const CalculateFirebaseTimestampDayDifference = (startDate, endDate) => {
+    const startDateObj = FirebaseTimestampToDate(startDate);
+    const endDateObj = FirebaseTimestampToDate(endDate);
+
+    const datesTimeDifference = endDateObj.getTime() - startDateObj.getTime();
+    const datesDaysDifference = Math.ceil(datesTimeDifference / (1000 * 3600 * 24));
+
+    return datesDaysDifference;
+}

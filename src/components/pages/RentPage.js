@@ -4,7 +4,7 @@ import {useHistory} from "react-router-dom";
 import {projectFirestore} from "../../firebase/config";
 import {VehicleTypes} from "../../types/VehicleTypes";
 import {useCollectionData} from "react-firebase-hooks/firestore";
-import {FirebaseTimestampToYear, JsDateToHtmlDate} from "../../utils/DateUtils";
+import {CalculateStringDatesDayDifference, FirebaseTimestampToYear, JsDateToHtmlDate} from "../../utils/DateUtils";
 import {MaximumDate} from "../../Constants";
 import {selectCount} from "../../features/counter/counterSlice";
 import RentModel from "../../models/RentModel";
@@ -42,11 +42,7 @@ const RentPage = (props) => {
     /* Price calculation */
     useEffect(() => {
         if (startDate && endDate) {
-            const startDateObj = new Date(startDate);
-            const endDateObj = new Date(endDate);
-
-            const datesTimeDifference = endDateObj.getTime() - startDateObj.getTime();
-            const datesDaysDifference = Math.ceil(datesTimeDifference / (1000 * 3600 * 24));
+            const datesDaysDifference = CalculateStringDatesDayDifference(startDate, endDate);
 
             let rentPrice = datesDaysDifference * selectedVehicle.price;
 
@@ -91,11 +87,18 @@ const RentPage = (props) => {
             return;
         }
 
+        if (selectedVehicle.count <= 0) {
+            alert("This vehicle isn't available. Please select another one!");
+        }
+
+        debugger;
+
         const rentObj = new RentModel(
             new Date(startDate),
             new Date(endDate),
             selectedCustomer.id,
             selectedVehicle.id,
+            finalRentPrice,
         )
 
         rentsRef

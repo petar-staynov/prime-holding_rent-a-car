@@ -2,13 +2,15 @@ class RentModel {
     startDate;
     endDate;
     customerId;
-    vehicleId
+    vehicleId;
+    rentPrice;
 
-    constructor(startDate, endDate, customerId, vehicleId) {
+    constructor(startDate, endDate, customerId, vehicleId, rentPrice) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.customerId = customerId;
         this.vehicleId = vehicleId;
+        this.rentPrice = rentPrice;
     }
 }
 
