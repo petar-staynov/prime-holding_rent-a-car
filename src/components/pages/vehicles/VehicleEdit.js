@@ -126,9 +126,7 @@ const VehicleEdit = (props) => {
 
         return (
             <div className="text-center">
-                <h1 onClick={() => {
-                    console.log(vehicleData)
-                }}>EDIT VEHICLE</h1>
+                <h1>EDIT VEHICLE</h1>
                 <ImageDisplay picture={vehicleData.picture} css={{maxHeight: "24rem"}}/>
 
                 <Form onSubmit={handleSubmit}>
@@ -237,6 +235,7 @@ const VehicleEdit = (props) => {
                         <button type="button" className="btn btn-danger mr-1" onClick={handleBtnDelete}>Delete</button>
                     </div>
                 </div>
+                <br/>
             </div>
         )
     }

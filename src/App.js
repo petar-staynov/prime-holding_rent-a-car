@@ -25,7 +25,7 @@ function App() {
                 <Route exact path='/vehicles' component={VehiclesPage}/>
                 <Route exact path='/vehicles/add' component={VehicleAdd}/>
                 <Route exact path='/vehicles/edit/:id' component={VehicleEdit}/>
-                <Route exact path='/vehicles/delete' component={VehicleDelete}/>
+                <Route exact path='/vehicles/delete/:id' component={VehicleDelete}/>
                 <Route exact path='/vehicles/view/:id' component={VehicleView}/>
                 <Route exact path='/customers' component={CustomersPage}/>
                 <Route exact path='/rent' component={RentPage}/>
