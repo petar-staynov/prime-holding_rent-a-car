@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Navigationbar from "./components/navbar/Navigationbar";
 import HomePage from "./components/pages/HomePage";
-import {Switch, Route} from "react-router-dom";
+import {Switch, Route, HashRouter} from "react-router-dom";
 import VehiclesPage from "./components/pages/vehicles/VehiclesPage";
 import RentPage from "./components/pages/RentPage";
 import CustomersPage from "./components/pages/CustomersPage";
@@ -19,11 +19,11 @@ import RentsPage from "./components/pages/RentsPage";
 function App() {
     return (
         <div className="container">
-            <Switch>
+            <HashRouter basename='/'>
                 <Navigationbar/>
-            </Switch>
+            </HashRouter>
 
-            <Switch>
+            <HashRouter basename='/'>
                 <Route exact path='/' component={HomePage}/>
                 <Route exact path='/vehicles' component={VehiclesPage}/>
                 <Route exact path='/vehicles/add' component={VehicleAdd}/>
@@ -37,7 +37,7 @@ function App() {
                 <Route exact path='/customers/delete/:id' component={CustomerDelete}/>
                 <Route exact path='/rent' component={RentPage}/>
                 <Route exact path='/rents' component={RentsPage}/>
-            </Switch>
+            </HashRouter>
         </div>);
 }
 
