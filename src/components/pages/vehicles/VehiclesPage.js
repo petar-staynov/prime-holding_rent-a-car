@@ -7,8 +7,6 @@ import ImageDisplay from "../../shared/ImageDisplay";
 import {FirebaseTimestampToYear} from "../../../utils/DateUtils";
 
 const VehiclesPage = (props) => {
-    const [vehiclesData, setVehiclesData] = useState(null);
-
     // Refs and hooks
     const vehiclesRef = projectFirestore.collection('vehicles');
     const history = useHistory();

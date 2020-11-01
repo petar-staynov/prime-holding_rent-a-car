@@ -16,6 +16,7 @@ import CustomerAdd from "./components/pages/customers/CustomerAdd";
 import CustomerView from "./components/pages/customers/CustomerView";
 import CustomerEdit from "./components/pages/customers/CustomerEdit";
 import CustomerDelete from "./components/pages/customers/CustomerDelete";
+import RentsPage from "./components/pages/RentsPage";
 
 function App() {
     return (
@@ -36,9 +37,8 @@ function App() {
                 <Route exact path='/customers/view/:id' component={CustomerView}/>
                 <Route exact path='/customers/edit/:id' component={CustomerEdit}/>
                 <Route exact path='/customers/delete/:id' component={CustomerDelete}/>
-
                 <Route exact path='/rent' component={RentPage}/>
-
+                <Route exact path='/rents' component={RentsPage}/>
             </Switch>
         </div>);
 }

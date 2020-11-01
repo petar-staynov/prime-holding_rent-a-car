@@ -45,7 +45,7 @@ const VehicleDelete = (props) => {
                 alert('Vehicle deleted!')
                 history.push(`/vehicles`);
             }).catch((err) => {
-                alert(err);
+                alert("Error");
                 console.log(err)
             })
     };

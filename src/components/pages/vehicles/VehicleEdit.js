@@ -84,11 +84,11 @@ const VehicleEdit = (props) => {
             vehiclesRef
                 .doc(vehicleId)
                 .update(Object.assign({}, vehicle))
-                .then((docRef) => {
+                .then(() => {
                     console.log("Document successfully updated!");
                     history.push(`/vehicles/view/${vehicleId}`);
                 }).catch((err) => {
-                alert(err);
+                alert("Error");
                 console.log(err)
             })
         };

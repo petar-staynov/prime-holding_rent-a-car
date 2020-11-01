@@ -43,7 +43,7 @@ const CustomerDelete = (props) => {
                 alert('Customer deleted!')
                 history.push(`/customers`);
             }).catch((err) => {
-                alert(err);
+                alert("Error");
                 console.log(err)
             })
     };

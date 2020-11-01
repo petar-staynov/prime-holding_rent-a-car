@@ -10,3 +10,7 @@ export const FirebaseTimestampToDate = (timestamp) => {
 export const FirebaseTimestampToHtmlDate = (timestamp) => {
     return FirebaseTimestampToDate(timestamp).toISOString().substring(0, 10);
 }
+
+export const JsDateToHtmlDate = (date) => {
+    return date.toISOString().substring(0, 10);
+}

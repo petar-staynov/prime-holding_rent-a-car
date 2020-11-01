@@ -20,9 +20,18 @@ const CustomerAdd = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (!name) alert("Please type a brand");
-        if (!email) alert("Please type a model");
-        if (!phone) alert("Please enter a valid year");
+        if (!name) {
+            alert("Please type a brand");
+            return;
+        }
+        if (!email) {
+            alert("Please type a model");
+            return;
+        }
+        if (!phone) {
+            alert("Please enter a valid year");
+            return;
+        }
 
         const customer = new CustomerModel(
             name,
@@ -35,7 +44,7 @@ const CustomerAdd = (props) => {
             .then((docRef) => {
                 history.push('/customers');
             }).catch((err) => {
-            alert(err);
+            alert("Error");
             console.log(err)
         })
     };

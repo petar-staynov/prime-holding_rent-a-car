@@ -56,7 +56,7 @@ const CustomerEdit = (props) => {
                 console.log("Document successfully updated!");
                 history.push(`/customers/view/${customerId}`);
             }).catch((err) => {
-            alert(err);
+            alert("Error");
             console.log(err)
         })
     };

@@ -61,7 +61,7 @@ const VehicleAdd = (props) => {
                 .then((docRef) => {
                     history.push('/vehicles');
                 }).catch((err) => {
-                alert(err);
+                alert("Error");
                 console.log(err)
             })
         };
@@ -69,14 +69,38 @@ const VehicleAdd = (props) => {
         e.preventDefault();
 
         // Form data validation
-        if (!brand) alert("Please type a brand");
-        if (!model) alert("Please type a model");
-        if (!year) alert("Please enter a valid year");
-        if (!type) alert("Please select a vehicle type");
-        if (!fuelType) alert("Please select a fuel type");
-        if (!seats) alert("Please enter a valid number of seats");
-        if (!price) alert("Please enter a valid price");
-        if (!count) alert("Please enter a valid amount of available vehicles");
+        if (!brand) {
+            alert("Please type a brand");
+            return;
+        }
+        if (!model) {
+            alert("Please type a model");
+            return;
+        }
+        if (!year) {
+            alert("Please enter a valid year");
+            return;
+        }
+        if (!type) {
+            alert("Please select a vehicle type");
+            return;
+        }
+        if (!fuelType) {
+            alert("Please select a fuel type");
+            return;
+        }
+        if (!seats) {
+            alert("Please enter a valid number of seats");
+            return;
+        }
+        if (!price) {
+            alert("Please enter a valid price");
+            return;
+        }
+        if (!count) {
+            alert("Please enter a valid amount of available vehicles");
+            return;
+        }
 
         //Image upload
         await projectStorage.ref(file.name).put(file)

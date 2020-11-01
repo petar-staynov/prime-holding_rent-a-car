@@ -5,8 +5,6 @@ import {useCollectionData} from "react-firebase-hooks/firestore";
 
 
 const CustomersPage = (props) => {
-    const [customersData, setCustomersData] = useState(null);
-
     // Refs and hooks
     const customersRef = projectFirestore.collection('customers');
     const history = useHistory();

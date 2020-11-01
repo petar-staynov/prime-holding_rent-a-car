@@ -20,6 +20,7 @@ const Navigationbar = (props) => {
                     <Nav.Link as={Link} to="/vehicles">Vehicles</Nav.Link>
                     <Nav.Link as={Link} to="/customers">Customers</Nav.Link>
                     <Nav.Link as={Link} to="/rent">Rent a car</Nav.Link>
+                    <Nav.Link as={Link} to="/rents">Rental events</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
