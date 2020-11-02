@@ -1,12 +1,9 @@
 import React, {useState} from 'react';
 import {Button, Form} from "react-bootstrap";
-import {VehicleTypes} from "../../../types/VehicleTypes";
-import VehicleFuelTypes from "../../../types/VehicleFuelTypes";
-import VehicleModel from "../../../models/VehicleModel";
-import CustomerModel from "../../../models/CustomerModel";
 import {useHistory} from "react-router-dom";
 import {projectFirestore} from "../../../firebase/config";
-import {EmailPattern, PhoneNumberPattern} from "../../../regex/RegexPatterns";
+import {validateCustomer} from "../../../utils/ValidationUtils";
+import CustomerModel from "../../../models/CustomerModel";
 
 const CustomerAdd = (props) => {
     // Form data states
@@ -21,28 +18,18 @@ const CustomerAdd = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Form data validation
-        const emailRegex = new RegExp(EmailPattern);
-        const phoneRegex = new RegExp(PhoneNumberPattern);
-
-        if (!name) {
-            alert("Please type a valid name");
-            return;
-        }
-        if (!email || !emailRegex.test(email)) {
-            alert("Please type a valid email");
-            return;
-        }
-        if (!phone || !phoneRegex.test(phone)) {
-            alert("Please type a valid phone number of at least 10 digits");
-            return
-        }
-
         const customer = new CustomerModel(
             name,
             email,
             phone,
         );
+
+        // Form data validation
+        const validationResult = validateCustomer(customer);
+        if (validationResult !== true) {
+            alert(validationResult);
+            return;
+        }
 
         customersRef
             .add(Object.assign({}, customer))

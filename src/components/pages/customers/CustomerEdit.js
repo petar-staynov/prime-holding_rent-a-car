@@ -3,7 +3,7 @@ import {useHistory} from "react-router-dom";
 import {projectFirestore, projectStorage} from "../../../firebase/config";
 import CustomerModel from "../../../models/CustomerModel";
 import {Button, Form} from "react-bootstrap";
-import {EmailPattern, PhoneNumberPattern} from "../../../regex/RegexPatterns";
+import {validateCustomer} from "../../../utils/ValidationUtils";
 
 const CustomerEdit = (props) => {
     const {match} = props;
@@ -43,20 +43,10 @@ const CustomerEdit = (props) => {
         } = customerData;
 
         // Form data validation
-        const emailRegex = new RegExp(EmailPattern);
-        const phoneRegex = new RegExp(PhoneNumberPattern);
-
-        if (!name) {
-            alert("Please type a valid name");
+        const validationResult = validateCustomer(customerData);
+        if (validationResult !== true) {
+            alert(validationResult);
             return;
-        }
-        if (!email || !emailRegex.test(email)) {
-            alert("Please type a valid email");
-            return;
-        }
-        if (!phone || !phoneRegex.test(phone)) {
-            alert("Please type a valid phone number of at least 10 digits");
-            return
         }
 
         // Store entity in Firebase

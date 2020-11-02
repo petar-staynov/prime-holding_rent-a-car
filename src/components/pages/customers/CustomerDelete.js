@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useHistory} from "react-router-dom";
 import {projectFirestore, projectStorage} from "../../../firebase/config";
-import CustomerModel from "../../../models/CustomerModel";
 import {Button, Form} from "react-bootstrap";
 import {EmailPattern} from "../../../regex/RegexPatterns";
 

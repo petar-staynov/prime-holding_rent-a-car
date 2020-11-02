@@ -6,6 +6,7 @@ import VehicleFuelTypes from "../../../types/VehicleFuelTypes";
 import {projectFirestore, projectStorage} from "../../../firebase/config";
 import {VehicleTypes} from "../../../types/VehicleTypes";
 import VehicleModel from "../../../models/VehicleModel";
+import {validateVehicle} from "../../../utils/ValidationUtils";
 
 const VehicleAdd = (props) => {
     // Form data states
@@ -26,18 +27,19 @@ const VehicleAdd = (props) => {
     const handleFileChange = (e) => {
         const targetFile = e.target.files[0];
 
-        if (targetFile && Object.values(ImageTypes).includes(targetFile.type)) {
-            setFile(targetFile);
-        } else {
+        if (targetFile.size > 1000000) {
+            setFile(null);
+            alert("Image can not be larger than 1 Megabyte")
+        } else if (!targetFile && !Object.values(ImageTypes).includes(targetFile.type)) {
             setFile(null);
             alert("Invalid image")
+        } else {
+            setFile(targetFile);
         }
     };
 
     const handleSubmit = async (e) => {
         const submitDocument = (imgUrl) => {
-            console.log(imgUrl);
-
             if (!imgUrl) {
                 alert("Invalid image");
                 return;
@@ -69,36 +71,19 @@ const VehicleAdd = (props) => {
         e.preventDefault();
 
         // Form data validation
-        if (!brand) {
-            alert("Please type a brand");
-            return;
-        }
-        if (!model) {
-            alert("Please type a model");
-            return;
-        }
-        if (!year) {
-            alert("Please enter a valid year");
-            return;
-        }
-        if (!type) {
-            alert("Please select a vehicle type");
-            return;
-        }
-        if (!fuelType) {
-            alert("Please select a fuel type");
-            return;
-        }
-        if (!seats) {
-            alert("Please enter a valid number of seats");
-            return;
-        }
-        if (!price) {
-            alert("Please enter a valid price");
-            return;
-        }
-        if (!count) {
-            alert("Please enter a valid amount of available vehicles");
+        const validationResult = validateVehicle({
+            brand: brand,
+            model: model,
+            year: year,
+            type: type,
+            fuelType: fuelType,
+            seats: seats,
+            price: price,
+            count: count,
+        })
+
+        if (validationResult !== true) {
+            alert(validationResult);
             return;
         }
 

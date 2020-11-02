@@ -8,6 +8,7 @@ import {Button, Form} from "react-bootstrap";
 import {VehicleTypes} from "../../../types/VehicleTypes";
 import VehicleModel from "../../../models/VehicleModel";
 import ImageTypes from "../../../types/ImageTypes";
+import {validateVehicle} from "../../../utils/ValidationUtils";
 
 const VehicleEdit = (props) => {
     const {match} = props;
@@ -41,11 +42,14 @@ const VehicleEdit = (props) => {
     const handleFileChange = (e) => {
         const targetFile = e.target.files[0];
 
-        if (targetFile && Object.values(ImageTypes).includes(targetFile.type)) {
-            setFile(targetFile);
-        } else {
+        if (targetFile.size > 1000000) {
+            setFile(null);
+            alert("Image can not be larger than 1 Megabyte")
+        } else if (!targetFile && !Object.values(ImageTypes).includes(targetFile.type)) {
             setFile(null);
             alert("Invalid image")
+        } else {
+            setFile(targetFile);
         }
     };
 
@@ -95,14 +99,11 @@ const VehicleEdit = (props) => {
 
 
         // Form data validation
-        if (!brand) alert("Please type a brand");
-        if (!model) alert("Please type a model");
-        if (!year) alert("Please enter a valid year");
-        if (!type) alert("Please select a vehicle type");
-        if (!fuelType) alert("Please select a fuel type");
-        if (!seats) alert("Please enter a valid number of seats");
-        if (!price) alert("Please enter a valid price");
-        if (!count) alert("Please enter a valid amount of available vehicles");
+        const validationResult = validateVehicle(vehicleData);
+        if (validationResult !== true) {
+            alert(validationResult);
+            return;
+        }
 
         //Image upload
         if (file) {
